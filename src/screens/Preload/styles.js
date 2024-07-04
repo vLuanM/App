@@ -10,6 +10,5 @@ export const Container = styled.SafeAreaView`
 
 export const Image = styled.Image`
   width: 150px;
-  height: 250px;
- 
+  height: 150px;
 `;

@@ -65,7 +65,7 @@ export default ({navigation}) => {
 */
   return (
     <Container>
-      <SearchBar text="Qual Serviço desejas contratar?" setSearch={filterByName} />
+      <SearchBar text="Quais produtos deseja cadastrar?" setSearch={filterByName} />
       {}
       <FlatList
         data={servicosTemp.length > 0 ? servicosTemp : servicos}

@@ -103,7 +103,7 @@ export default ({route, navigation}) => {
     <Scroll>
       <Container>
         <Input
-          placeholder="Tipo de serviço"
+          placeholder="Tipo de produto"
           keyboardType="default"
           returnKeyType="go"
           leftIcon={
@@ -118,7 +118,7 @@ export default ({route, navigation}) => {
           value={nome}
         />
         <Input
-          placeholder="Descrição"
+          placeholder="Produto"
           keyboardType="default"
           returnKeyType="go"
           leftIcon={

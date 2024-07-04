@@ -1,62 +1,57 @@
-import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 import MeuButtom from '../../componentes/MeuButtom';
-import {COLORS} from '../../assets/colors';
+import { COLORS } from '../../assets/colors';
 
+const Home = ({ navigation }) => {
+  const [itensSupermercado, setItensSupermercado] = useState([
+    { id: '1', nome: 'Arroz', checked: false },
+    { id: '2', nome: 'Feijão', checked: false },
+    { id: '3', nome: 'Macarrão', checked: false },
+    { id: '4', nome: 'Carne', checked: false },
+    { id: '5', nome: 'Frango', checked: false },
+    { id: '6', nome: 'Leite', checked: false },
+    { id: '7', nome: 'Ovos', checked: false },
+    { id: '8', nome: 'Pão', checked: false },
+    { id: '9', nome: 'Manteiga', checked: false },
+    { id: '10', nome: 'Açúcar', checked: false }
+  ]);
 
-const Home = ({navigation}) => {
-  const [cont, setCont] = useState(0);
-
-  function incrementar() {
-    setCont(cont + 1);
-  }
-
-  function decrementar() {
-    setCont(cont - 1);
-  }
+  const toggleCheckBox = (id) => {
+    setItensSupermercado(prevItems =>
+      prevItems.map(item =>
+        item.id === id ? { ...item, checked: !item.checked } : item
+      )
+    );
+  };
 
   function mudarDeScreen() {
     navigation.navigate('SignIn');
-    // navigation.dispatch(
-    //   CommonActions.reset({
-    //     index: 0,
-    //     routes: [{name: 'SignIn'}],
-    //   }),
-    // );
   }
 
-  useEffect(() => {
-    console.log('Reagiu na construção do compoenente.');
-
-    return () => {
-      console.log('Reagiu na descontrução do compoenente.');
-    };
-  }, []); //array obtém as etapas do ciclo de via
-
-  useEffect(() => {
-    console.log('====================================');
-    console.log('Reagiu ao atualizar o componente.');
-    console.log('====================================');
-  }, [cont]);
+  const renderItem = ({ item }) => (
+    <TouchableOpacity onPress={() => toggleCheckBox(item.id)}>
+      <View style={styles.item}>
+        <Text style={[styles.itemText, item.checked && styles.itemTextChecked]}>
+          {item.nome}
+        </Text>
+      </View>
+    </TouchableOpacity>
+  );
 
   return (
     <View style={styles.container}>
-      <Text color="blue">Open up App.js to start working on your app!</Text>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Text style={styles.text}>{cont}</Text>
-      <MeuButtom
-        aoClicar={incrementar}
-        texto="Incrementar"
-        cor={COLORS.accent}
+      <Text style={styles.title}>Lista de Supermercado</Text>
+      <FlatList
+        data={itensSupermercado}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
       />
-      <MeuButtom
-        aoClicar={decrementar}
-        texto="decrementar"
-        cor={COLORS.primary}
-      />
+     
     </View>
   );
 };
+
 export default Home;
 
 const styles = StyleSheet.create({
@@ -64,9 +59,27 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 20,
   },
-  text: {
-    color: COLORS.accent,
-    fontSize: 60,
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  item: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    width: '100%',
+  },
+  itemText: {
+    fontSize: 18,
+    color: '#FF0000',
+  },
+  itemTextChecked: {
+    textDecorationLine: 'line-through',
+    color: '#90ee90',
   },
 });

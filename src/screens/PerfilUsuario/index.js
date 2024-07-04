@@ -277,6 +277,7 @@ export default ({navigation}) => {
         <MeuButtom aoClicar={salvar} texto="Salvar" cor={COLORS.accent}/>
         <DeleteButton texto="Excluir Conta" onClick={excluir} />
         <DeleteButton texto="Alterar Senha" onClick={alterarSenha} />
+        
         {/*<Loading visivel={loading} />*/}
       </Container>
     </Scroll>

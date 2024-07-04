@@ -113,8 +113,8 @@ const styles = StyleSheet.create({
   },
   image: {
     marginTop: 100, // centralizar
-    width: 250,
-    height: 150,
+    width: 100,
+    height: 100,
     margin: 5,
     
   },
