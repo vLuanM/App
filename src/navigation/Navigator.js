@@ -28,52 +28,50 @@ function AppStack() {
       headerShown: false,
     }}>
       <Tab.Screen name="Home" component={Home}
-      options={{
-        tabBarLabel: 'Home',
-        tabBarIcon: () => <Icon name="home" color={COLORS.primary} size={20} />,
-      }}
-      
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: () => <Icon name="home" color={COLORS.primary} size={20} />,
+          }
+        }
       />
 
+      <Tab.Screen name="Servicos" component={Servicos} options={{
+          tabBarLabel: 'Lista',
+          tabBarIcon: () => (
+            <Icon type="ionicon" name="bag" color={COLORS.primary} size={20} />
+          ),
+      }
+      } 
+      />
+      
       <Tab.Screen
         component={Menu} name="Menu"
         options={{
           TBarLabel: 'Menu',
-         tabBarIcon: () => <Icon type="ionicon" name="list" color={COLORS.primary} size={20} />,
-      }}/>
-     
-     <Tab.Screen name="Servicos" component={Servicos} options={{
-        tabBarLabel: 'Serviços',
-        tabBarIcon: () => (
-          <Icon type="ionicon" name="construct" color={COLORS.primary} size={20} />
-        ),
-     }
-     } />
-
-<Tab.Screen name="Servico" component={Servico} options={{
-        tabBarLabel: 'Serviço',
-        tabBarIcon: () => (
-          <Icon type="ionicon" name="clipboard" color={COLORS.primary} size={20} />
-        ),
-     }
-     } />
-    
+          tabBarIcon: () => <Icon type="ionicon" name="list" color={COLORS.primary} size={20} />,
+          }
+        }
+      />
+  
+      
+  
     </Tab.Navigator>
   );
 }
 
+
+
 function AuthStack() {
   return (
     <Stack.Navigator 
-    initialRouteName="Preload" 
-    screenOptions={{
-      headerShown: false,
-    }}>
-      <Stack.Screen name="Preload" component={Preload} />
-      <Stack.Screen name="SignIn" component={SignIn} />
-      <Stack.Screen  name="SignUp" component={SignUp} />
-      <Stack.Screen name="ForgotPassWord" component={forgotPass} />
-     
+      initialRouteName="Preload" 
+      screenOptions={{
+        headerShown: false,
+      }}>
+        <Stack.Screen name="Preload" component={Preload} />
+        <Stack.Screen name="SignIn" component={SignIn} />
+        <Stack.Screen  name="SignUp" component={SignUp} />
+        <Stack.Screen name="ForgotPassWord" component={forgotPass} />
     </Stack.Navigator>
   );
 }
@@ -93,8 +91,13 @@ const Navigator = () => {
             presentation: 'modal',
           }}
         />
-        
-        
+
+        <Stack.Screen name="Servico" 
+          component={Servico} 
+          options={{
+            presentation: 'modal'
+          }}
+        />
         
       </Stack.Navigator>
     </NavigationContainer>

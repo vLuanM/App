@@ -31,9 +31,14 @@ export default ({route, navigation}) => {
       setUid(route.params.value.uid);
       setNome(route.params.value.nome);
       setDescricao(route.params.value.descricao);
-      setPreco(route.params.value.preco);
+      setPreco(`R$ ${route.params.value.preco}`);
     }
   }, [route]);
+
+  const handlePrecoChange = (text) => { // Cifra preço
+    const precoSemFormato = text.replace(/[^0-9]/g, '');
+    setPreco(`R$ ${precoSemFormato}`);
+  };
 
   const salvar = async () => {
     if (nome && descricao && preco) {
@@ -41,7 +46,7 @@ export default ({route, navigation}) => {
       servico.uid = uid;
       servico.nome = nome;
       servico.descricao = descricao;
-      servico.preco = preco;
+      servico.preco = preco.replace('R$', '').trim();
       setLoading(true);
       if (servico.uid) {
         if (await update(servico)) {
@@ -55,11 +60,11 @@ export default ({route, navigation}) => {
       } else {
         if (await save(servico)) {
           ToastAndroid.show(
-            'Show! Você inluiu com sucesso.',
+            'Show! Você incluiu com sucesso.',
             ToastAndroid.LONG,
           );
         } else {
-          ToastAndroid.show('Ops! Erro ao alterar.', ToastAndroid.LONG);
+          ToastAndroid.show('Ops! Erro ao incluir.', ToastAndroid.LONG);
         }
       }
       setLoading(false);
@@ -103,7 +108,7 @@ export default ({route, navigation}) => {
     <Scroll>
       <Container>
         <Input
-          placeholder="Tipo de produto"
+          placeholder="Categoria"
           keyboardType="default"
           returnKeyType="go"
           leftIcon={
@@ -134,7 +139,7 @@ export default ({route, navigation}) => {
         />
         <Input
           placeholder="Preço"
-          keyboardType="default"
+          keyboardType="numeric"
           returnKeyType="go"
           leftIcon={
             <Icon
@@ -144,7 +149,7 @@ export default ({route, navigation}) => {
               color={COLORS.primary}
             />
           }
-          onChangeText={t => setPreco(t)}
+          onChangeText={handlePrecoChange}
           value={preco}
         />
         <MeuButtom aoClicar={salvar} texto="Salvar" cor={COLORS.accent}/>

@@ -21,8 +21,8 @@ export default ({item, onPress}) => {
     divider: {
       width: 260,
     },
-    div_estudante: {
-      flexDirection: 'row',
+    div_servico: {
+      flexDirection: 'column',
       alignItems: 'center',
     },
     foto: {
@@ -36,6 +36,7 @@ export default ({item, onPress}) => {
       color: COLORS.white,
       fontSize: 18,
       fontWeight: 'bold',
+      marginBottom: 20,
     },
   });
 
@@ -45,7 +46,7 @@ export default ({item, onPress}) => {
       <Card.Divider color={COLORS.primary} style={styles.divider} />
       <View style={styles.div_servico}>
         <Text style={styles.nome}>{item.descricao}</Text>
-        <Text style={styles.nome}>{item.preco}</Text>
+        <Text style={styles.nome}>{`R$ ${item.preco}`}</Text>
       </View>
       <OutlineButton texto={'Detalhar'} onClick={onPress} />
     </Card>

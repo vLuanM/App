@@ -1,6 +1,5 @@
 import React, {useContext, useState} from 'react';
 import styled from 'styled-components/native';
-import { CommonActions } from '@react-navigation/native';
 import {ServicoContext} from '../../context/ServicoProvider';
 import Item from './Item';
 import FloatButtonAdd from '../../componentes/FloatButtonAdd';
@@ -38,14 +37,11 @@ export default ({navigation}) => {
     }
   };
 
-  const routeServico = item => {
-    navigation.dispatch(
-      CommonActions.navigate({
-        name: 'Servico',
-        params: {servico: item},
-      }),
-    );
-  };
+  const routeServico = value => {
+    navigation.navigate ('Servico', 
+      {value});
+    };
+
 /*
   const routeAddServico = () => {
     navigation.dispatch(
